@@ -1,8 +1,6 @@
 #import all the package needed
 import pandas as pd
 import numpy as np
-from datetime import datetime
-from datetime import timedelta
 
 
 #import your roster and attendance record from zoom

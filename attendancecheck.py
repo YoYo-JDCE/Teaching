@@ -1,5 +1,8 @@
+#import all the package needed
 import pandas as pd
 import numpy as np
+from datetime import date
+
 
 
 #import your roster and attendance record from zoom
@@ -21,7 +24,20 @@ print(absence)
 incomplete=attendance[attendance['Duration (Minutes)']<60]
 
 
+#save the attendance to certain folder
+def get_filename_datetime():
+    # Use current date to get a text file name.
+    return "QUAN340001-" + str(date.today()) + ".xlsx"
+
+# Get full path for writing.
+name = get_filename_datetime()
+print("NAME", name)
+
+path = "C:\\Users\\jjian\\Desktop\\attendance1\\" + name
+print("PATH", path);
+
+
 #export your the record to a spreed sheet named as "attendance"
-absence.to_excel("attendanceQUAN1.xlsx",sheet_name='absence')
-with pd.ExcelWriter('attendanceQUAN1.xlsx',mode='a') as writer:
+absence.to_excel(path,sheet_name='absence')
+with pd.ExcelWriter(path,mode='a') as writer:
    incomplete.to_excel(writer,sheet_name='incomplete')

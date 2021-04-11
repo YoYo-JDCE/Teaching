@@ -5,9 +5,30 @@ from datetime import date
 
 
 
+#Customize your code based on your class below
+
+#replace ### by document name of your class roster
+ClassRoster=['######.csv']
+
+#replace ### by zoom report of attendance
+ZoomAttendence=['#####.csv']
+#enter the minimum length students having to attend the class (in minutes)such as 60 mininues, please enter 60
+Minimum_Time=[   ]
+
+#replace ##### by the name you want to call for your attendance report. such as ECON220SECTION1
+filename=["#####"]
+
+#Enter location of where you want to save the attendance report. such as C:\DESKTOP, please enter C:\\DESKTOP
+filepath=["C:\\####"]
+
+#End of customization
+
+
+
+
 #import your roster and attendance record from zoom
-roster=pd.read_csv('QUAN1Roster.csv')
-attendance=pd.read_csv('quan1.csv')
+roster=pd.read_csv(ClassRoster)
+attendance=pd.read_csv(ZoomAttendence)
 
 #identify students not attending classes
 attendance=attendance.merge(roster,how='outer',left_on='User Email',right_on='Email')
@@ -21,19 +42,19 @@ print(absence)
 
 #identify students did not attend the whole class (late or leave earlier).
 #my threshold is 60 minutes, since my class last 75 minutes
-incomplete=attendance[attendance['Duration (Minutes)']<60]
+incomplete=attendance[attendance['Duration (Minutes)']<Minimum_Time]
 
 
 #save the attendance to certain folder
 def get_filename_datetime():
     # Use current date to get a text file name.
-    return "QUAN340001-" + str(date.today()) + ".xlsx"
+    return filename + str(date.today()) + ".xlsx"
 
 # Get full path for writing.
 name = get_filename_datetime()
 print("NAME", name)
 
-path = "C:\\Users\\jjian\\Desktop\\AttendanceCheck\\attendance1\\" + name
+path = filepath + name
 print("PATH", path);
 
 

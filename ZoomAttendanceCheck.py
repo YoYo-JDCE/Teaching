@@ -8,27 +8,22 @@ from datetime import date
 #Customize your code based on your class below
 
 #replace ### by document name of your class roster
-ClassRoster=['######.csv']
+roster=pd.read_csv('#####.csv')
 
 #replace ### by zoom report of attendance
-ZoomAttendence=['#####.csv']
+attendance=pd.read_csv('######.CSV')
 #enter the minimum length students having to attend the class (in minutes)such as 60 mininues, please enter 60
-Minimum_Time=[   ]
+Minimum_Time=##
 
 #replace ##### by the name you want to call for your attendance report. such as ECON220SECTION1
-filename=["#####"]
+filename="#####"
 
 #Enter location of where you want to save the attendance report. such as C:\DESKTOP, please enter C:\\DESKTOP
-filepath=["C:\\####"]
+filepath="C:\\####\\"
 
 #End of customization
 
 
-
-
-#import your roster and attendance record from zoom
-roster=pd.read_csv(ClassRoster)
-attendance=pd.read_csv(ZoomAttendence)
 
 #identify students not attending classes
 attendance=attendance.merge(roster,how='outer',left_on='User Email',right_on='Email')
